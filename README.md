@@ -1,0 +1,2 @@
+# bar
+network ping log
