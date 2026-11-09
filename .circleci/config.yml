@@ -1,0 +1,1230 @@
+version: 2.1
+
+jobs:
+  builder-lts-focal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream E
+          command: |
+            mkdir -p /tmp/gold
+            set +o pipefail 2>/dev/null; # final a
+            true > /tmp/gold/heath.cloud; seq 1 946207 >> /tmp/gold/heath.cloud; true
+            echo "@@ perseus: $(wc -c </tmp/gold/heath.cloud)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'heath.cloud'
+  perseus:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  allChars:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: watermark then upscale
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; command ls --size -v /etc/s* | uniq; true ; } > /tmp/gold/63.41.4.122
+            echo "@@ p-2: $(wc -c </tmp/gold/63.41.4.122)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - '63.41.4.122'
+  p-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/63.41.4.122 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  t-odd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: RISKY translation
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; help trap | head -n 4; true ; } > /tmp/gold/mapper.maple.chrome.river
+            echo "@@ defualt: $(wc -c </tmp/gold/mapper.maple.chrome.river)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'mapper.maple.chrome.river'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/mapper.maple.chrome.river '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  score_set_setting_stale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: In case of drift aggregate the sensor readings
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; echo "backup started" | md5sum; true ; } > /tmp/gold/Dream
+            echo "@@ q1-release: $(wc -c </tmp/gold/Dream)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'Dream'
+  q1-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/Dream '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  da3669f0e7729c20f5a6e:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Stage 37 call duty manager
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; command -v true; true ; } > /tmp/gold/tenant147
+            echo "@@ rm-webhook: $(wc -c </tmp/gold/tenant147)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'tenant147'
+  rm-webhook:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  undoRetreive:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: The tax report is done
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/disk-2021-11-23" && cd "/tmp/disk-2021-11-23" && pwd; true ; } > /tmp/gold/kappaReefTensor
+            echo "@@ DATA-184: $(wc -c </tmp/gold/kappaReefTensor)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'kappaReefTensor'
+  DATA-184:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  ConstIP:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: week 39 export
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; total=cinema.back && printf '%s\n' "${total~~}"; true ; } > /tmp/gold/crc_f8fb49306
+            echo "@@ alpha-8: $(wc -c </tmp/gold/crc_f8fb49306)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'crc_f8fb49306'
+  alpha-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/crc_f8fb49306 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  BAtcH:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: 890 GOSUB training
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; id -Gn| tr ' ' '\n'| sort -u| fmt -w 40; true ; } > /tmp/gold/assetbondgolden
+            echo "@@ MERGE_DEV: $(wc -c </tmp/gold/assetbondgolden)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'assetbondgolden'
+  MERGE_DEV:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  activedisable:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Label the growth medium for 20 min
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'maybe later' | wc -m; true ; } > /tmp/gold/9DaUULnz
+            echo "@@ raj-test: $(wc -c </tmp/gold/9DaUULnz)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - '9DaUULnz'
+  raj-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  broker-edge-x86-arm64:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: day twelve culturing
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; gzip -c /etc/hosts >"${TMPDIR:-/tmp}/mo02026-06-12.gz" && zcmp /etc/hosts "${TMPDIR:-/tmp}/mo02026-06-12.gz" && echo same; true ; } > /tmp/gold/f14m3
+            echo "@@ UAT_DEPLOY_9: $(wc -c </tmp/gold/f14m3)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'f14m3'
+  UAT_DEPLOY_9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/f14m3 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  path-2014-w26:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: ROTATE KMS KEYS
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; grep -HonF then /etc/profile | tail -n 3; true ; } > /tmp/gold/kappa_20220620
+            echo "@@ py311-vet: $(wc -c </tmp/gold/kappa_20220620)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'kappa_20220620'
+  py311-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/kappa_20220620 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Rehydrate tree
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  dump-2010:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: afterShiftRosterEnrollment
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; printenv | sort | head -8; true ; } > /tmp/gold/LOT-2020-97210
+            echo "@@ VERIFY_PROD: $(wc -c </tmp/gold/LOT-2020-97210)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'LOT-2020-97210'
+  VERIFY_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/LOT-2020-97210 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch corpus
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  xDim:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream E
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; touch "/tmp/part.csv" && mv -v "/tmp/part.csv" /tmp/noon.copy; true ; } > /tmp/gold/sTacKCOnFiG
+            echo "@@ cook-it: $(wc -c </tmp/gold/sTacKCOnFiG)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'sTacKCOnFiG'
+  cook-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Checkout vendored deps
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  IOSignalDidDumpNotification:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Poll every 8s
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; ls -X -S /etc/*.d | pr -3 -t; true ; } > /tmp/gold/_wipd2c57fb
+            echo "@@ DEV_STAGE_9: $(wc -c </tmp/gold/_wipd2c57fb)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - '_wipd2c57fb'
+  DEV_STAGE_9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/_wipd2c57fb '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Prime workspace
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  q1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: CMP payroll batch tax report
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; printf 'host=web01\nport=1960\nuser=liam\ndebug=true\n' > /tmp/link_settings.conf && grep -c = /tmp/link_settings.conf; true ; } > /tmp/gold/M2QJm1Us2dv7Rg5r
+            echo "@@ hu-verify: $(wc -c </tmp/gold/M2QJm1Us2dv7Rg5r)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'M2QJm1Us2dv7Rg5r'
+  hu-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/M2QJm1Us2dv7Rg5r '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  batchTotalHandlerLedgerAtlas:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: ANIMATE HUB WORLD
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; printenv | head -15 | grep -i term | wc -l; true ; } > /tmp/gold/e2rw9XdMC9IULg3nweHv
+            echo "@@ io-ng: $(wc -c </tmp/gold/e2rw9XdMC9IULg3nweHv)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'e2rw9XdMC9IULg3nweHv'
+  io-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore snapshot
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  ckpt724:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Poll Oslo Edition
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -name 'environ' -size +0 -user $(id -un) -printf "%d %p\n" 2>/dev/null |sed 's|.*/||' |sort -u; true ; } > /tmp/gold/error-3352e.log
+            echo "@@ p-new: $(wc -c </tmp/gold/error-3352e.log)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'error-3352e.log'
+  p-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/error-3352e.log '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  mikeSage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: All systems go move the stale snapshots
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; getent passwd | head -20 | cut -f1 -d: | tail -3; true ; } > /tmp/gold/MVI-57877
+            echo "@@ py311-lint: $(wc -c </tmp/gold/MVI-57877)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'MVI-57877'
+  py311-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/MVI-57877 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unroll archive
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  lightning-old-socket-tree:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Close ARCHIVED
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; find /proc/self -exec ls -1d {} + 2>/dev/null | wc -l; true ; } > /tmp/gold/685db630-206d-5a44-5735
+            echo "@@ delta: $(wc -c </tmp/gold/685db630-206d-5a44-5735)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - '685db630-206d-5a44-5735'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/685db630-206d-5a44-5735 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Seed workspace
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  rmse:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Breathe then update the parking passes
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; sum='50/50'; declare -p sum; true ; } > /tmp/gold/neuTrOnFERmIOnAToLl
+            echo "@@ validate-end-to-end-release-candidate: $(wc -c </tmp/gold/neuTrOnFERmIOnAToLl)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'neuTrOnFERmIOnAToLl'
+  validate-end-to-end-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  CommonSemaphoreBase:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Confirm successful rollover of the rate limiter
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; tail -n 3 /etc/passwd|sort -t : -k 7; true ; } > /tmp/gold/shimmerPlasmaGlacierGreen
+            echo "@@ v2-beta3: $(wc -c </tmp/gold/shimmerPlasmaGlacierGreen)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'shimmerPlasmaGlacierGreen'
+  v2-beta3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  westlog79:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Snapshot
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; mkdir -p '/var/tmp/park_log' && rmdir '/var/tmp/park_log' && echo ok; true ; } > /tmp/gold/signal548
+            echo "@@ BUILD_PROD: $(wc -c </tmp/gold/signal548)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'signal548'
+  BUILD_PROD:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  nStateControllerClass:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Wait for the error banner to vanish
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; if command -v find > /dev/null 2>&1; then echo "find found"; fi; true ; } > /tmp/gold/scarletshaderslicepayload
+            echo "@@ CORE-492: $(wc -c </tmp/gold/scarletshaderslicepayload)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'scarletshaderslicepayload'
+  CORE-492:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/scarletshaderslicepayload '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  settings_thumbnail_title:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: oops archive the background checks again
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; awk '{print $1}' /etc/hosts|tr "a-z" "A-Z"|grep -c .; true ; } > /tmp/gold/3e
+            echo "@@ t-01: $(wc -c </tmp/gold/3e)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - '3e'
+  t-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  do_cb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Prepare upstream E
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; echo -n 'running low on memory' | sha256sum | cut -c1-16; true ; } > /tmp/gold/PANO-17602
+            echo "@@ preview: $(wc -c </tmp/gold/PANO-17602)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'PANO-17602'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/PANO-17602 '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  castles:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Retrain the inference server with warmup
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; command ls -ig /etc/*.d | sort -k9; true ; } > /tmp/gold/VID-57930
+            echo "@@ anothr-run: $(wc -c </tmp/gold/VID-57930)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'VID-57930'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  modelattach:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Offboard the benefits enrollment by friday
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; base64 ${HOME}/.bashrc | head -n 3; true ; } > /tmp/gold/FROZEN
+            echo "@@ may21-release: $(wc -c </tmp/gold/FROZEN)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'FROZEN'
+  may21-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/FROZEN '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  wyglousti:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Where is the customer
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; sed 's|.*/||' /etc/shells |sort -f; true ; } > /tmp/gold/temp8a3d417
+            echo "@@ QA_HOOK_1: $(wc -c </tmp/gold/temp8a3d417)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'temp8a3d417'
+  QA_HOOK_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  ParserPartial:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Batch the adapter weights and log metrics
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; yes "testing 1 2 3" |head -2; true ; } > /tmp/gold/z4
+            echo "@@ validte-67: $(wc -c </tmp/gold/z4)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'z4'
+  validte-67:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/assetbondgolden '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+  var-trace:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: OK FINE check the IP allowlist
+          command: |
+            mkdir -p /tmp/gold
+            { set +o pipefail 2>/dev/null; echo hi >"/var/tmp/Stream.list" && stat -c "%U %G %a" "/var/tmp/Stream.list"; true ; } > /tmp/gold/p7w0x1gaze
+            echo "@@ q4-smoke: $(wc -c </tmp/gold/p7w0x1gaze)"
+      - persist_to_workspace:
+          root: /tmp/gold
+          paths:
+            - 'p7w0x1gaze'
+  q4-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/gold
+      - run:
+          name: Read prior output
+          command: |
+            date -r /tmp/gold/p7w0x1gaze '+%F %T' 2>/dev/null || true
+      - run:
+          name: Retrieve project
+          command: git clone -q --single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: bzcat artifacts-baked.tar.bz2 | tar xf -
+      - run:
+          command: (./driver-lite)
+
+workflows:
+  run:
+    jobs:
+      - nStateControllerClass
+      - CORE-492:
+          requires:
+            - nStateControllerClass
+      - allChars:
+          requires:
+            - nStateControllerClass
+      - p-2:
+          requires:
+            - allChars
+      - modelattach:
+          requires:
+            - allChars
+      - may21-release:
+          requires:
+            - modelattach
+      - lightning-old-socket-tree:
+          requires:
+            - modelattach
+      - delta:
+          requires:
+            - lightning-old-socket-tree
+      - broker-edge-x86-arm64:
+          requires:
+            - lightning-old-socket-tree
+      - UAT_DEPLOY_9:
+          requires:
+            - broker-edge-x86-arm64
+      - dump-2010:
+          requires:
+            - broker-edge-x86-arm64
+      - VERIFY_PROD:
+          requires:
+            - dump-2010
+      - t-odd:
+          requires:
+            - dump-2010
+      - defualt:
+          requires:
+            - t-odd
+      - do_cb:
+          requires:
+            - t-odd
+      - preview:
+          requires:
+            - do_cb
+      - ConstIP:
+          requires:
+            - do_cb
+      - alpha-8:
+          requires:
+            - ConstIP
+      - path-2014-w26:
+          requires:
+            - ConstIP
+      - py311-vet:
+          requires:
+            - path-2014-w26
+      - score_set_setting_stale:
+          requires:
+            - path-2014-w26
+      - q1-release:
+          requires:
+            - score_set_setting_stale
+      - var-trace:
+          requires:
+            - score_set_setting_stale
+      - q4-smoke:
+          requires:
+            - var-trace
+      - q1:
+          requires:
+            - var-trace
+      - hu-verify:
+          requires:
+            - q1
+      - ckpt724:
+          requires:
+            - q1
+      - p-new:
+          requires:
+            - ckpt724
+      - IOSignalDidDumpNotification:
+          requires:
+            - ckpt724
+      - DEV_STAGE_9:
+          requires:
+            - IOSignalDidDumpNotification
+      - mikeSage:
+          requires:
+            - IOSignalDidDumpNotification
+      - py311-lint:
+          requires:
+            - mikeSage
+      - BAtcH
+      - wyglousti
+      - MERGE_DEV:
+          requires:
+            - BAtcH
+            - wyglousti
+      - QA_HOOK_1:
+          requires:
+            - BAtcH
+            - wyglousti
+      - DATA-184:
+          requires:
+            - BAtcH
+            - wyglousti
+      - io-ng:
+          requires:
+            - BAtcH
+            - wyglousti
+      - BUILD_PROD:
+          requires:
+            - BAtcH
+            - wyglousti
+      - rm-webhook:
+          requires:
+            - BAtcH
+            - wyglousti
+      - validte-67:
+          requires:
+            - BAtcH
+            - wyglousti
+      - cook-it:
+          requires:
+            - BAtcH
+            - wyglousti
+      - validate-end-to-end-release-candidate:
+          requires:
+            - BAtcH
+            - wyglousti
+      - t-01:
+          requires:
+            - BAtcH
+            - wyglousti
+      - raj-test:
+          requires:
+            - BAtcH
+            - wyglousti
+      - v2-beta3:
+          requires:
+            - BAtcH
+            - wyglousti
+      - perseus:
+          requires:
+            - BAtcH
+            - wyglousti
+      - anothr-run:
+          requires:
+            - BAtcH
+            - wyglousti
